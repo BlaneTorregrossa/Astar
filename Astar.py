@@ -2,17 +2,29 @@ from node import Node       #imports Node class from node.py
 from graph import Graph     #imports Graph class from graph.py
 
 
-class Astar(object):
+class AStar(object):
     def __init__(self, start, goal, graph):
         self.start = start
         self.goal = goal
         self.graph = graph
-        self.c
+        self.current = start
         self.openlist = []
         self.closedlist = []    
         
-    
         
+
+    #set_start(self):
+
+
+    #set_goal(self):
+
+
+    #sort_openlist(self):
+
+
+    #update():        
+
+
 
     # Collects neighbors from adjacent areas to the given node on the given graph    
     def test_neighbors(node, graph):

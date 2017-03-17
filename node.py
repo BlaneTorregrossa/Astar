@@ -6,12 +6,13 @@ class Node(object):
         self.gscore = 0
         self.hscore = 0
         self.fscore = 0
-        self.count_gscore(self, node)
+        self.count_gscore()
         self.count_hscore()
         self.count_fscore()
 
 
-    def count_gscore(self, neighbor):
+    def count_gscore(self, ):
+       
         
 
     #def count_hscore(self):
