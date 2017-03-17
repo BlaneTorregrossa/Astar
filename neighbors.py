@@ -1,5 +1,4 @@
 
- 
 # class for nodes to be used in a graph 
 class Node(object):
     def __init__(self, position, identity):
@@ -8,6 +7,7 @@ class Node(object):
         self.gscore = 0
         self.hscore = 0
         self.fscore = 0
+        self.fscorehold = 0
         
 
     def position(self):
@@ -15,6 +15,7 @@ class Node(object):
 
     def identity(self):
         return self.identity
+
 
 #columns and rows for a graph/grid
 #preferbly 5x5 
@@ -33,7 +34,9 @@ class Graph(object):
                 counter = counter + 1
                 self.nodes.append(newnode)
                 
-                    
+
+
+
 
 # Collects neighbors from adjacent areas to the given node on the given graph    
 def test_neighbors(node, graph):
@@ -58,36 +61,59 @@ def test_neighbors(node, graph):
 
     return neighbors
 
+
+
 #prints each position (w/ an x and y axis) from the graph given
 def print_graph_info(graph):
     for node in graph.nodes :
         print str(node.position[0])  + "," + str(node.position[1])
 
-
+#Gets gScore for the neighboring nodes to the current node searching
 def gScore_test(node, neighbor):
     if neighbor.position[0] == node.position[0] or neighbor.position[1] == node.position[1]:
         neighbor.gscore += 10
     else:
         neighbor.gscore += 14
 
+#Gets the distance between neighbors and the end node 
 def hScore_test(goal, node):
     node.hscore += 10 * ( (abs(goal.position[0] - node.position[0]) )
                          + (abs(goal.position[1] - node.position[1])) )                 
 
+#Gets a total of both gscore and hscore and assigns it to a node
 def fScore_test(node):
     node.fscore = (node.gscore + node.hscore) 
+
+
+def sort_fscore(nodes):
+    for i in range(0, len(nodes)):
+        for j in range(0, len(nodes)):
+            if nodes[i].fscore < nodes[j].fscore:
+                temp = nodes[i]
+                nodes[i] = nodes[j]
+                nodes[j] = temp
+
+
+
+    
+    
 
 
 GRAPH = Graph(5, 5)
 STARTINGNODE = Node([0, 0], 0)
 ENDINGNODE = Node([4, 2], 1)
+CURRENTNODE = STARTINGNODE
 
 
 mylist = test_neighbors(STARTINGNODE, GRAPH)
+searchnodelist = mylist
 for node in mylist:    
     gScore_test(STARTINGNODE, node)
     hScore_test(ENDINGNODE, node)
     fScore_test(node)
+    
+sort_fscore(mylist)
+CURRENTNODE = mylist[0]
 
 
 
