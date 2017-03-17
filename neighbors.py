@@ -1,5 +1,5 @@
 
-
+ 
 # class for nodes to be used in a graph 
 class Node(object):
     def __init__(self, position, identity):
@@ -8,6 +8,7 @@ class Node(object):
         self.gscore = 0
         self.hscore = 0
         self.fscore = 0
+        
 
     def position(self):
         return self.position 
@@ -63,21 +64,19 @@ def print_graph_info(graph):
         print str(node.position[0])  + "," + str(node.position[1])
 
 
-#
 def gScore_test(node, neighbor):
     if neighbor.position[0] == node.position[0] or neighbor.position[1] == node.position[1]:
         neighbor.gscore += 10
     else:
         neighbor.gscore += 14
 
-
 def hScore_test(goal, node):
-    diffx = abs(goal.position[0] - node.position[0])    #xPos
-    diffy = abs(goal.position[1] - node.position[1])    #yPos
-    node.hscore += 10 * (diffx - diffy)                 
+    node.hscore += 10 * ( (abs(goal.position[0] - node.position[0]) )
+                         + (abs(goal.position[1] - node.position[1])) )                 
 
 def fScore_test(node):
-    node.fscore = (node.gscore + node.hscore)
+    node.fscore = (node.gscore + node.hscore) 
+
 
 GRAPH = Graph(5, 5)
 STARTINGNODE = Node([0, 0], 0)
@@ -89,6 +88,8 @@ for node in mylist:
     gScore_test(STARTINGNODE, node)
     hScore_test(ENDINGNODE, node)
     fScore_test(node)
+
+
 
 #lists neighbors that appear next to the node
 for node in mylist:
