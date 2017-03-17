@@ -1,17 +1,14 @@
-#- Set up nodes and graph
-#- Have a getneighbors function working
-#- Should work from test_neighbors
 
-
-# CLASSES STILL NEED TO BE FIXED FOR THIS TO WORK
 
 # class for nodes to be used in a graph 
-# Stop putting xpos/ypos in this class
 class Node(object):
     def __init__(self, position, identity):
         self.position = position
         self.identity = identity
-        
+        self.gscore = 0
+        self.hscore = 0
+        self.fscore = 0
+
     def position(self):
         return self.position 
 
@@ -36,7 +33,8 @@ class Graph(object):
                 self.nodes.append(newnode)
                 
                     
-    
+
+# Collects neighbors from adjacent areas to the given node on the given graph    
 def test_neighbors(node, graph):
     neighbors = []
     left = [node.position[0] - 1, node.position[1]]
@@ -59,27 +57,40 @@ def test_neighbors(node, graph):
 
     return neighbors
 
-
-def print_info(graph):
+#prints each position (w/ an x and y axis) from the graph given
+def print_graph_info(graph):
     for node in graph.nodes :
         print str(node.position[0])  + "," + str(node.position[1])
 
 
-def get_gScore(node, neighbors):
-    gScore = 0
-    
-        
-        
+#
+def gScore_test(node, neighbor):
+    if neighbor.position[0] == node.position[0] or neighbor.position[1] == node.position[1]:
+        neighbor.gscore += 10
+    else:
+        neighbor.gscore += 14
 
 
+def hScore_test(goal, node):
+    diffx = abs(goal.position[0] - node.position[0])    #xPos
+    diffy = abs(goal.position[1] - node.position[1])    #yPos
+    node.hscore += 10 * (diffx - diffy)                 
+
+def fScore_test(node):
+    node.fscore = (node.gscore + node.hscore)
 
 GRAPH = Graph(5, 5)
 STARTINGNODE = Node([0, 0], 0)
+ENDINGNODE = Node([4, 2], 1)
 
-print_info(GRAPH)
+
 mylist = test_neighbors(STARTINGNODE, GRAPH)
-get_gScore(STARTINGNODE, mylist)
+for node in mylist:    
+    gScore_test(STARTINGNODE, node)
+    hScore_test(ENDINGNODE, node)
+    fScore_test(node)
 
+#lists neighbors that appear next to the node
 for node in mylist:
     print str(node.position[0]) + "," + str(node.position[1]) + " Neighbor "
 
