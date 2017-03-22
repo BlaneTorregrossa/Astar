@@ -1,3 +1,4 @@
+import node
 from node import Node           #imports Node class from node.py
 
 #columns and rows for a graph/grid

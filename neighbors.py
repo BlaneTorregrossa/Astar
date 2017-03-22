@@ -10,11 +10,6 @@ class Node(object):
         self.fscorehold = 0
         
 
-    def position(self):
-        return self.position 
-
-    def identity(self):
-        return self.identity
 
 
 #columns and rows for a graph/grid

@@ -1,3 +1,4 @@
+
 from node import Node       #imports Node class from node.py
 from graph import Graph     #imports Graph class from graph.py
 
@@ -93,6 +94,7 @@ class AStar(object):
     sort_fscore(mylist)
     CURRENTNODE = mylist[0]
     
+
 
 
     #lists neighbors that appear next to the node
