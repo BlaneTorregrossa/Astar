@@ -87,13 +87,7 @@ def sort_fscore(nodes):
                 temp = nodes[i]
                 nodes[i] = nodes[j]
                 nodes[j] = temp
-
-
-
-    
-    
-
-
+                
 GRAPH = Graph(5, 5)
 STARTINGNODE = Node([0, 0], 0)
 ENDINGNODE = Node([4, 2], 1)

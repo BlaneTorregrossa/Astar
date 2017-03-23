@@ -1,4 +1,3 @@
-
 from node import Node       #imports Node class from node.py
 from graph import Graph     #imports Graph class from graph.py
 
@@ -10,7 +9,7 @@ class AStar(object):
         self.current = start
         self.openlist = [self.current]
         self.closedlist = [] 
-        self.parentlist = self.closedlist
+        self.parentlist = []
 
     # Collects neighbors from adjacent areas to the given node on the given graph
     def test_neighbors(self, node, graph):
@@ -33,7 +32,7 @@ class AStar(object):
                     neighbors.append(graphnode)
 
         return neighbors
- 
+
     def algorithm(self):
         self.openlist.remove(self.current)
         self.closedlist.append(self.current)
@@ -44,7 +43,6 @@ class AStar(object):
             node.calculatehscore(self.goal)
             node.calculatefscore()
         self.sortopen()
-        self.sortparents()
         self.current = self.openlist[0]
     
     def sortopen(self):
@@ -54,12 +52,4 @@ class AStar(object):
                     temp = self.openlist[nodecmp]
                     self.openlist[nodecmp] = self.openlist[node]
                     self.openlist[node] = temp
-                    
-    def sortparents(self):
-        for node in range(0, len(self.parentlist)):
-            for nodecmp in range(0, len(self.parentlist)):
-                 if self.parentlist[node].fscore > self.parentlist[nodecmp].fscore:
-                    temp = self.parentlist[nodecmp]
-                    self.parentlist[nodecmp] = self.parentlist[node]
-                    self.parentlist[node] = temp
                     

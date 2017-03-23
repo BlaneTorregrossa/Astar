@@ -14,5 +14,5 @@ while star.current.position != star.goal.position:
     if star.current.position == star.goal.position:
         star.closedlist.append(star.current)
         
-        
+
 print "words"
