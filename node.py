@@ -8,8 +8,6 @@ class Node(object):
         self.fscore = 0    
 
 
-
-
     def calculategscore(self, currentnode):
         tenatativeg = 0        
         if currentnode.position[0] == self.position[0] or currentnode.position[1] == self.position[1]:
@@ -24,17 +22,8 @@ class Node(object):
                 self.parent = currentnode
                 self.gscore = tenatativeg
             
+    def calculatehscore(self, goalnode):
+        self.hscore = 10 * (abs(goalnode.position[0] - self.position[0]) + abs(goalnode.position[1] - self.position[1]))
 
-    #def calculatehscore(self):
-        
-
-
-
-    #def calculatefscore(self):
-
-
-
-
-
-    
-
+    def calculatefscore(self):
+        self.fscore = self.gscore + self.hscore
