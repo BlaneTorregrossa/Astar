@@ -33,7 +33,7 @@ class AStar(object):
                     neighbors.append(graphnode)
 
         return neighbors
-
+ 
     def algorithm(self):
         self.openlist.remove(self.current)
         self.closedlist.append(self.current)
@@ -58,7 +58,7 @@ class AStar(object):
     def sortparents(self):
         for node in range(0, len(self.parentlist)):
             for nodecmp in range(0, len(self.parentlist)):
-                 if self.parentlist[node].fscore < self.parentlist[nodecmp].fscore:
+                 if self.parentlist[node].fscore > self.parentlist[nodecmp].fscore:
                     temp = self.parentlist[nodecmp]
                     self.parentlist[nodecmp] = self.parentlist[node]
                     self.parentlist[node] = temp
