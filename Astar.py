@@ -9,8 +9,9 @@ class AStar(object):
         self.graph = graph
         self.current = start
         self.openlist = [self.current]
-        self.closedlist = []    
-        
+        self.closedlist = [] 
+        self.parentlist = self.closedlist
+
     # Collects neighbors from adjacent areas to the given node on the given graph
     def test_neighbors(self, node, graph):
         neighbors = []
@@ -43,8 +44,8 @@ class AStar(object):
             node.calculatehscore(self.goal)
             node.calculatefscore()
         self.sortopen()
+        self.sortparents()
         self.current = self.openlist[0]
-
     
     def sortopen(self):
         for node in range(0, len(self.openlist)):
@@ -52,4 +53,13 @@ class AStar(object):
                 if self.openlist[node].fscore < self.openlist[nodecmp].fscore:
                     temp = self.openlist[nodecmp]
                     self.openlist[nodecmp] = self.openlist[node]
-                    self.openlist[node] = temp 
+                    self.openlist[node] = temp
+                    
+    def sortparents(self):
+        for node in range(0, len(self.parentlist)):
+            for nodecmp in range(0, len(self.parentlist)):
+                 if self.parentlist[node].fscore < self.parentlist[nodecmp].fscore:
+                    temp = self.parentlist[nodecmp]
+                    self.parentlist[nodecmp] = self.parentlist[node]
+                    self.parentlist[node] = temp
+                    
