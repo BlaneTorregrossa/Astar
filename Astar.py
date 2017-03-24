@@ -13,6 +13,13 @@ class AStar(object):
         self.closedlist = [] 
         self.parentlist = []
 
+
+    def getnode(self, node):
+        wall = []
+        if node.walkable != False:
+            node.walkable = False
+        wall.append(node)
+
     # Collects neighbors from adjacent areas to the given node on the given graph
     def test_neighbors(self, node, graph):
         neighbors = []
@@ -29,9 +36,11 @@ class AStar(object):
         for graphnode in graph.nodes:
             for position in validposition:
                 if graphnode.position[0] == position[0] and graphnode.position[1] == position[1]:
-                    neighbors.append(graphnode)
+                    if graphnode.walkable:
+                        neighbors.append(graphnode)
 
         return neighbors
+
 
     def algorithm(self):
         self.openlist.remove(self.current)
@@ -61,3 +70,5 @@ class AStar(object):
             self.parentlist.append(recentparent.parent)
             recentparent = recentparent.parent
             recentparent.path = True
+    
+    
