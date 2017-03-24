@@ -1,3 +1,5 @@
+import node
+import graph
 from node import Node       #imports Node class from node.py
 from graph import Graph     #imports Graph class from graph.py
 
@@ -18,12 +20,10 @@ class AStar(object):
         bottom = [node.position[0], node.position[1] - 1]
         right = [node.position[0] + 1, node.position[1]]
         top = [node.position[0], node.position[1] + 1]
-
         top_left = [node.position[0] - 1, node.position[1] + 1]
         bottom_left = [node.position[0] - 1, node.position[1] - 1]
         top_right = [node.position[0] + 1, node.position[1] + 1]
         bottom_right = [node.position[0] + 1, node.position[1] - 1]
-
         validposition = [left, bottom, right, top, top_left, bottom_left, top_right, bottom_right]
 
         for graphnode in graph.nodes:

@@ -4,6 +4,7 @@ class Node(object):
         self.identity = identity
         self.parent = None
         self.path = False
+        self.wall = False
         self.gscore = 0
         self.hscore = 0
         self.fscore = 0    
