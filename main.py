@@ -5,15 +5,16 @@ from node import Node       #imports Node class from node.py
 from graph import Graph     #imports Graph class from graph.py
 from Astar import AStar     #imports Astar class from AStar.py
 
-MainGraph = Graph(5, 5)
-star = AStar(MainGraph.nodes[0], MainGraph.nodes[24], MainGraph)
+MainGraph = Graph(10, 10)
+star = AStar(MainGraph.nodes[0], MainGraph.nodes[99], MainGraph)
 
 #will never reach goal if the unwalkable nodes are set to the ones below
-star.getnode(MainGraph.nodes[18])
-star.getnode(MainGraph.nodes[17])
-star.getnode(MainGraph.nodes[16])
-star.getnode(MainGraph.nodes[13])
-star.getnode(MainGraph.nodes[8])
+star.getnode(65, MainGraph).walkable = False
+star.getnode(64, MainGraph).walkable = False
+star.getnode(63, MainGraph).walkable = False
+star.getnode(55, MainGraph).walkable = False
+star.getnode(45, MainGraph).walkable = False
+star.getnode(35, MainGraph).walkable = False
 
 
 
