@@ -13,6 +13,6 @@ while star.current.position != star.goal.position:
     star.algorithm()
     if star.current.position == star.goal.position:
         star.closedlist.append(star.current)
-        
+        star.retraceparents()
 
 print "words"

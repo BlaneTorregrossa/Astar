@@ -52,4 +52,12 @@ class AStar(object):
                     temp = self.openlist[nodecmp]
                     self.openlist[nodecmp] = self.openlist[node]
                     self.openlist[node] = temp
-                    
+    
+    def retraceparents(self):
+        self.parentlist.append(self.goal)
+        recentparent = self.goal
+        recentparent.path = True
+        while recentparent != self.start:
+            self.parentlist.append(recentparent.parent)
+            recentparent = recentparent.parent
+            recentparent.path = True

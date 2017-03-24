@@ -3,6 +3,7 @@ class Node(object):
         self.position = position
         self.identity = identity
         self.parent = None
+        self.path = False
         self.gscore = 0
         self.hscore = 0
         self.fscore = 0    
