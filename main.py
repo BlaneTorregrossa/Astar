@@ -3,7 +3,6 @@ import graph
 import Astar
 from node import Node       #imports Node class from node.py
 from graph import Graph     #imports Graph class from graph.py
-<<<<<<< HEAD
 import pathfinding
 from pathfinding import testfunc
 from pathfinding import getneighbors
@@ -67,7 +66,7 @@ star.getnode(81, MainGraph).walkable = False
 star.getnode(82, MainGraph).walkable = False
 star.getnode(83, MainGraph).walkable = False
 star.getnode(95, MainGraph).walkable = False
->>>>>>> parent of fd5fef2... fixed test cases
+
     
 if __name__ == '__main__':
     main()
