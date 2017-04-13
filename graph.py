@@ -1,7 +1,8 @@
 import node
 from node import Node           #imports Node class from node.py
 
-
+#columns and rows for a graph/grid
+#preferbly 5x5 
 class Graph(object):
     def __init__(self, row, col):
         self.columns = col
