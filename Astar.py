@@ -14,13 +14,13 @@ class AStar(object):
         self.closedlist = [] 
         self.parentlist = []
 
-def getnode(identity, graph):
+def getnode(self, identity, graph):
     for node in graph.nodes:
         if node.identity == identity:
             return node
 
 # Collects neighbors from adjacent areas to the given node on the given graph
-def test_neighbors(node, graph):
+def test_neighbors(self, node, graph):
     neighbors = []
     left = [node.position[0] - 1, node.position[1]]
     bottom = [node.position[0], node.position[1] - 1]
@@ -41,7 +41,7 @@ def test_neighbors(node, graph):
     return neighbors
 
 
-def algo(start, goal, graph):
+def algo(self, start, goal, graph):
     current = start
     openlist = [current]
     closedlist = []
