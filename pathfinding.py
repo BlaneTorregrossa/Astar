@@ -1,6 +1,6 @@
 '''pathfinding.py'''
 import math
-import Astar
+
 
 class Node(object):
     '''data'''
@@ -76,37 +76,31 @@ def retrace(goal):
     return path
 
 
-# def astar(start, goal, graph):
-#     '''astar'''
-#     graph = list(GRAPH)
-#     openlist = []
-#     closedlist = []
-#     path = []
-#     openlist.append(start)
-#     openlist.sort(key=lambda x: x.f)
-
-#     while openlist:
-#         current = openlist[0]
-#         openlist.remove(current)
-#         closedlist.append(current)
-#         if current == goal:
-#             path = retrace(current)
-#             return path
-#         neighbors = getneighbors(current, graph)
-#         for nay in neighbors:
-#             if nay in closedlist or not nay.walkable:
-#                 continue
-#             tentative_g = nay.g + costtomove(current, nay)
-#             if nay not in openlist:
-#                 openlist.append(nay)
-#             elif tentative_g >= nay.g:
-#                 continue
-#             nay.parent = current
-#             nay.g = tentative_g
-#             nay.h = manhattan(nay, goal)
-#             nay.f = nay.g + nay.h
-
-#     return path
+def astar(start, goal, graph):
+    current = start
+    openlist = [current]
+    closedlist = []
+    path = []
+    while openlist:
+        openlist.remove(current)
+        closedlist.append(start)
+        for node in getneighbors(current, graph):            
+            if node not in openlist and node not in closedlist:
+                openlist.append(node)
+            node.g = costtomove(current, node) + current.g
+            tentative_g = node.g
+            if node in closedlist:
+                pass
+            node.h = manhattan(node, goal)
+            node.f = node.g + node.h
+        current = openlist[0]
+    for node in range(0, len(openlist)):
+        for nodecmp in range(0, len(openlist)):
+            if openlist[node].fscore < openlist[nodecmp].fscore:
+                temp = openlist[nodecmp]
+                openlist[nodecmp] = openlist[node]
+                openlist[node] = temp
+    return path
 
 
 def testfunc(astarfunc):

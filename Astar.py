@@ -1,19 +1,18 @@
 import node
 import graph
-import main
 from node import Node       #imports Node class from node.py
 from graph import Graph     #imports Graph class from graph.py
 import pathfinding
 
-# class AStar(object):
-#     def __init__(self, start, goal, graph):
-#         self.start = start
-#         self.goal = goal
-#         self.graph = graph
-#         self.current = start
-#         self.openlist = [self.current]
-#         self.closedlist = [] 
-#         self.parentlist = []
+class AStar(object):
+    def __init__(self, start, goal, graph):
+        self.start = start
+        self.goal = goal
+        self.graph = graph
+        self.current = start
+        self.openlist = [self.current]
+        self.closedlist = [] 
+        self.parentlist = []
 
 def getnode(identity, graph):
     for node in graph.nodes:
@@ -42,7 +41,7 @@ def test_neighbors(node, graph):
     return neighbors
 
 
-def astar(start, goal, graph):
+def algo(start, goal, graph):
     current = start
     openlist = [current]
     closedlist = []
@@ -53,10 +52,9 @@ def astar(start, goal, graph):
         for node in pathfinding.getneighbors(current, graph):            
             if node not in openlist and node not in closedlist:
                 openlist.append(node)
-            calculategscore(current)
-            calculatehscore(goal)
-            calculatefscore()
-        sortopen()
+            node.calculategscore(current)
+            node.calculatehscore(goal)
+            node.calculatefscore()
         current = openlist[0]
     for node in range(0, len(openlist)):
         for nodecmp in range(0, len(openlist)):
